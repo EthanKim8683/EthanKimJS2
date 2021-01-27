@@ -1,14 +1,14 @@
 var canvas = document.getElementById("canvas")
 var gl = canvas.getContext("webgl2", {preserveDrawingBuffer: true, antialias:false})
     
-createShader = function(type,code) {
+var createShader = function(type,code) {
 	var shader = gl.createShader(type);
 	gl.shaderSource(shader,code);
 	gl.compileShader(shader);
 	return shader;
 };
     
-createProgram = function(vertexCode,fragmentCode) {
+var createProgram = function(vertexCode,fragmentCode) {
 	var vertexShader = createShader(gl.VERTEX_SHADER,vertexCode);
 	var fragmentShader = createShader(gl.FRAGMENT_SHADER,fragmentCode);
 	var program = gl.createProgram();
@@ -22,7 +22,7 @@ createProgram = function(vertexCode,fragmentCode) {
 	return program;
 };
 
-rotate3D = function(rx,ry) {
+var rotate3D = function(rx,ry) {
     var 
     cx = Math.cos(ry),
     sx = Math.sin(ry),
