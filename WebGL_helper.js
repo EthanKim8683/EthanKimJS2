@@ -49,3 +49,94 @@ var rotate3D = function(rx,ry) {
 		sy,sx*cy,cx*cy,
 	];
 };
+
+function cube(program,x,y,z,l,h,w) {
+        
+        const data = {};
+        data.vao = gl.createVertexArray();
+        gl.bindVertexArray(data.vao);
+        
+        const normals = [];
+        
+        const positions = [
+		
+		// x
+		
+		x,  y,  z,
+		x,  y+h,z,
+		x,  y+h,z+w,
+		
+		x,  y,  z,
+		x,  y+h,z+w,
+		x,  y,  z+w,
+		
+		x+l,y+h,z,
+		x+l,y,  z,
+		x+l,y+h,z+w,
+		
+		x+l,y,  z,
+		x+l,y,  z+w,
+		x+l,y+h,z+w,
+		
+		// y
+		
+		x+l,y,  z,
+		x,  y,  z,
+		x+l,y,  z+w,
+		
+		x,  y,  z,
+		x,  y,  z+w,
+		x+l,y,  z+w,
+		
+		x,  y+h,z,
+		x+l,y+h,z,
+		x+l,y+h,z+w,
+		
+		x,  y+h,z,
+		x+l,y+h,z+w,
+		x,  y+h,z+w,
+		
+		// z
+		
+		x,  y,  z,
+		x+l,y+h,z,
+		x,  y+h,z,
+		
+		x,  y,  z,
+		x+l,y,  z,
+		x+l,y+h,z,
+		
+		x,  y,  z+w,
+		x,  y+h,z+w,
+		x+l,y+h,z+w,
+		
+		x+l,y,  z+w,
+		x,  y,  z+w,
+		x+l,y+h,z+w,
+        ];
+        
+        for(let i=0;i<3;i++) {
+		const t = [0,0,0];
+		for(let o=0;o<2;o++) {
+			for(let p=0;p<6;p++) {
+				t[i] = (o-1)*2+1;
+				normals.push(t[0],t[1],t[2]);
+			}
+		}
+        }
+        
+        setAttrib(program,"a_position",new Float32Array(positions));
+        //setAttrib(program,"a_color",new Float32Array(colors));
+        setAttrib(program,"a_normal",new Float32Array(normals));
+        
+        gl.bindVertexArray(null);
+        
+        data.draw = function() {
+		
+		gl.bindVertexArray(data.vao);
+		gl.drawArrays(gl.TRIANGLES,0,36);
+		gl.bindVertexArray(null);
+        };
+        
+        return data;
+};
