@@ -24,7 +24,7 @@ var createProgram = function(vertexCode,fragmentCode) {
 	return program;
 };
 
-var setAttrib = function(program,name,array,count,type,buffer) {
+var setAttrib = function(program,name,array,count,buffer,type) {
         
         var loc = gl.getAttribLocation(program,name);
         var buf = gl.createBuffer();
