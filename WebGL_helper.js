@@ -9,8 +9,10 @@ var createShader = function(type,code) {
 	return shader;
 };
     
-var createProgram = function(vertexCode,fragmentCode) {
+var createProgram = function(vID,fID) {
 	
+	var vertexCode = document.getElementById(vID).text.trim()
+	var fragmentCode = document.getElementById(fID).text.trim()
 	var vertexShader = createShader(gl.VERTEX_SHADER,vertexCode);
 	var fragmentShader = createShader(gl.FRAGMENT_SHADER,fragmentCode);
 	var program = gl.createProgram();
@@ -114,6 +116,35 @@ function cube(program,x,y,z,l,h,w) {
 		x,  y,  z+w,
 		x+l,y+h,z+w,
         ];
+	
+	
+        
+        const texcoords = [
+		
+		// x
+		
+		0,0,0,1,1,1,
+		0,0,1,1,1,0,
+		
+		1,0,0,0,1,1,
+		0,0,0,1,1,1,
+		
+		// y 
+		
+		1,0,0,0,1,1,
+		0,0,0,1,1,1,
+		
+		0,0,1,0,1,1,
+		0,0,1,1,0,1,
+		
+		// z
+		
+		0,0,1,1,0,1,
+		0,0,1,0,1,1,
+		
+		0,0,0,1,1,1,
+		1,0,0,0,1,1,
+        ];
         
         for(let i=0;i<3;i++) {
 		const t = [0,0,0];
@@ -126,7 +157,7 @@ function cube(program,x,y,z,l,h,w) {
         }
         
         setAttrib(program,"a_position",new Float32Array(positions));
-        //setAttrib(program,"a_color",new Float32Array(colors));
+        setAttrib(program,"a_texcoord",new Float32Array(texcoords),2);
         setAttrib(program,"a_normal",new Float32Array(normals));
         
         gl.bindVertexArray(null);
