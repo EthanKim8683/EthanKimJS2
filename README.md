@@ -1,5 +1,5 @@
-# EthanKimJS2
-### Welcome to my (**slightly improved**) JS library!
+# EthanKimJS
+### Welcome to my JS library!
 Here you will find all sorts of random JS junk that I use in my programs (accessible [here](https://www.khanacademy.org/profile/I2I0/projects).)
 
 Here are the contents, and then the contents of *those* contents:
@@ -18,4 +18,4 @@ Here are the contents, and then the contents of *those* contents:
 - [ ] Improve cube function
 - [ ] Refine and add parser
 
-###### (Description last updated 2/8/21)
+###### (Description last updated 2/20/21)
