@@ -14,15 +14,15 @@ Here are the contents, and then the contents of *those* contents:
   - **bindUniformProgram**: Binds a program for uniforms to be located from
   - **getUniformLocation**: Locates uniforms
   - **EKGL**: A prefix that provides access to short names, here are their equivalents:
-    - *Cshader*: createShader,
-    - *Cprogram*: createProgram,
-    - *Ctex*: createTex,
-    - *Buni*: bindUniformProgram,
-    - *Sattrib*: setAttrib,
-    - *Guni*: getUniformLocation,
-    - *Mrot*: rotationMatrix,
-    - *Mpro*: projectionMatrix,
-    - *cube*: cube,
+    - *Cshader*: createShader
+    - *Cprogram*: createProgram
+    - *Ctex*: createTex
+    - *Buni*: bindUniformProgram
+    - *Sattrib*: setAttrib
+    - *Guni*: getUniformLocation
+    - *Mrot*: rotationMatrix
+    - *Mpro*: projectionMatrix
+    - *cube*: cube
   
 ### Todo:
 - [x] Check this box
