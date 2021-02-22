@@ -7,7 +7,7 @@ function createShader(type,code) {
 	gl.shaderSource(shader,code);
 	gl.compileShader(shader);
 	return shader;
-};
+}
     
 function createProgram(vID,fID) {
 	
@@ -24,7 +24,7 @@ function createProgram(vID,fID) {
 	gl.detachShader(program, fragmentShader);
 	gl.deleteShader(fragmentShader);
 	return program;
-};
+}
 
 function setAttrib(program,name,array,count,buffer,type) {
         
@@ -49,7 +49,7 @@ function setAttrib(program,name,array,count,buffer,type) {
         	gl.enableVertexAttribArray(loc);
         	gl.vertexAttribPointer(loc,_count,_type,false,0,0);
 	}
-};
+}
 
 function rotationMatrix(rx,ry) {
 	
@@ -63,7 +63,7 @@ function rotationMatrix(rx,ry) {
 		sy,    sx*cy,  cx*cy, 0,
 		0,     0,      0,     1
 	];
-};
+}
 
 function projectionMatrix(fov,aspect,near,far) {
 	
@@ -76,7 +76,7 @@ function projectionMatrix(fov,aspect,near,far) {
 		0,        0, (near+far)*irange, -1,
 		0,        0, 2*near*far*irange,  0
 	];
-};
+}
 
 function cube(program,x,y,z,l,h,w) {
         
@@ -194,7 +194,7 @@ function cube(program,x,y,z,l,h,w) {
         };
         
         return data;
-};
+}
 
 function createTex(data,width,height,type,dtype,itype) {
 	
@@ -211,4 +211,33 @@ function createTex(data,width,height,type,dtype,itype) {
     	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
 	
 	return tex;
-};
+}
+
+var uniformProgram = null;
+function bindUniformProgram(program) {
+	
+	uniformProgram = program;
+}
+
+function setUniform(data) {
+	
+	var _data = {};
+	for(i=0;i<data.length;i+=2) {
+		
+		_data[data[i]] = gl.getUniformLocation(uniformProgram,data[i+1]);
+	}
+	
+	return _data;
+}
+
+EKGL = {
+	Cshader:createShader,
+	Cprogram:createProgram,
+	Ctex:createTex,
+	Buni:bindUniformProgram,
+	Sattrib:setAttrib,
+	Suni:setUniform,
+	Mrot:rotationMatrix,
+	Mpro:projectionMatrix,
+	cube:cube,
+}
