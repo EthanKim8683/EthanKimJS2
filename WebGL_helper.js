@@ -219,7 +219,7 @@ function bindUniformProgram(program) {
 	uniformProgram = program;
 }
 
-function setUniform(data) {
+function getUniformLocation(data) {
 	
 	var _data = {};
 	for(i=0;i<data.length;i+=2) {
@@ -236,7 +236,7 @@ EKGL = {
 	Ctex:createTex,
 	Buni:bindUniformProgram,
 	Sattrib:setAttrib,
-	Suni:setUniform,
+	Guni:getUniformLocation,
 	Mrot:rotationMatrix,
 	Mpro:projectionMatrix,
 	cube:cube,
