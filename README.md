@@ -11,6 +11,18 @@ Here are the contents, and then the contents of *those* contents:
   - **projectionMatrix**: Produces a projection matrix given the FOV, aspect, near and far.
   - **cube**: Creates a cube with texcoords, positions and normals. (todo: color)
   - **createTex**: Creates a texture given pixel data, dimensions (optional: type, data type, internal type)
+  - **bindUniformProgram**: Binds a program for uniforms to be located from
+  - **getUniformLocation**: Locates uniforms
+  - **EKGL**: A prefix that provides access to short names, here are their equivalents:
+    - *Cshader*: createShader,
+	  - *Cprogram*: createProgram,
+	  - *Ctex*: createTex,
+	  - *Buni*: bindUniformProgram,
+	  - *Sattrib*: setAttrib,
+	  - *Guni*: getUniformLocation,
+	  - *Mrot*: rotationMatrix,
+	  - *Mpro*: projectionMatrix,
+	  - *cube*: cube,
   
 ### Todo:
 - [x] Check this box
