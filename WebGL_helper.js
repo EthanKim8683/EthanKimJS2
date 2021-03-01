@@ -224,7 +224,7 @@ function getUniformLocation(data) {
 	var _data = [];
 	for(i=0;i<data.length;i++) {
 		
-		_data.push(gl.getUniformLocation(uniformProgram,data[i+1]));
+		_data.push(gl.getUniformLocation(uniformProgram,data[i]));
 	}
 	
 	return _data;
