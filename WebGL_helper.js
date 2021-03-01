@@ -221,10 +221,10 @@ function bindUniformProgram(program) {
 
 function getUniformLocation(data) {
 	
-	var _data = {};
-	for(i=0;i<data.length;i+=2) {
+	var _data = [];
+	for(i=0;i<data.length;i++) {
 		
-		_data[data[i]] = gl.getUniformLocation(uniformProgram,data[i+1]);
+		_data.push(gl.getUniformLocation(uniformProgram,data[i+1]));
 	}
 	
 	return _data;
