@@ -51,30 +51,31 @@ function setAttrib(program,name,array,count,buffer,type) {
 	}
 }
 
-var f1, f2, nf, nf2;
-
-function projectionMatrix(fov,aspect,near,far) {
-
-	irange = 1/(near-far)
-	f1 = 1/Math.tan(fov*0.5)
-	f2 = f1/aspect
-	nf = (near+far)*irange
-	nf2 = 2*near*far*irange
+function rotationMatrix(rx,ry) {
+	
+	var cx = Math.cos(ry),
+	    sx = Math.sin(ry),
+	    cy = Math.cos(rx),
+	    sy = Math.sin(rx);
+	return [
+		cy,   -sy*sx, -sy*cx, 0,
+		0,     cx,    -sx,    0,
+		sy,    sx*cy,  cx*cy, 0,
+		0,     0,      0,     1
+	];
 }
 
-function allMatrix(rx,ry) {
-
-	cx = Math.cos(ry)
-	sx = Math.sin(ry)
-	cy = Math.cos(rx)
-	sy = Math.sin(rx)
+function projectionMatrix(fov,aspect,near,far) {
+	
+	var f = 1/Math.tan(fov*0.5);
+	var irange = 1/(near-far);
 	
 	return [
-		cy*f2, -sy*sx*f1, -sy*cx*nf, sy*cx,
-		0,      cx*f1,    -sx*nf,    sx,
-		sy*f2,  sx*cy*f1,  cx*cy*nf, -cx*cy,
-		0,      0,         nf2,      1
-	]
+		f/aspect, 0, 0,                  0,
+		0,        f, 0,                  0,
+		0,        0, (near+far)*irange, -1,
+		0,        0, 2*near*far*irange,  0
+	];
 }
 
 function cube(program,x,y,z,l,h,w) {
