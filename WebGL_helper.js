@@ -63,19 +63,19 @@ function projectionMatrix(fov,aspect,near,far) {
 }
 
 function allMatrix(rx,ry) {
-
-	cx = Math.cos(ry)
-	sx = Math.sin(ry)
-	cy = Math.cos(rx)
-	sy = Math.sin(rx)
-
-	return [
-		cy*f2, -sy*sx*f1, -sy*cx*nf, sy*cx,
-		0,      cx*f1,    -sx*nf,    sx,
-		sy*f2,  sx*cy*f1,  cx*cy*nf, -cx*cy,
-		0,      0,         nf2,      1
-	]
-}
+    
+    	cx = Math.cos(ry)
+    	sx = Math.sin(ry)
+    	cy = Math.cos(rx)
+    	sy = Math.sin(rx)
+    
+    	return [
+    		cy*f2, -sy*sx*f1, -sy*cx*nf,  sy*cx,
+            	0,      cx*f1,    -sx*nf,     sx,
+           	sy*f2,  sx*cy*f1,  cx*cy*nf, -cx*cy,
+            	0,      0,         nf2,       0,
+    	]
+    }
 
 function cube(program,x,y,z,l,h,w) {
         
