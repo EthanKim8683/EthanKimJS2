@@ -51,31 +51,29 @@ function setAttrib(program,name,array,count,buffer,type) {
 	}
 }
 
-var f1, f2, nf, nf2;
+function allMatrix(fov,aspect,near,far) {
 
-function projectionMatrix(fov,aspect,near,far) {
-
-	irange = 1/(near-far)
+	ir = 1/(near-far)
 	f1 = 1/Math.tan(fov*0.5)
 	f2 = f1/aspect
-	nf = (near+far)*irange
-	nf2 = 2*near*far*irange
-}
+	nf = (near+far)*ir
+	nf2 = 2*near*far*ir
+	
+	return function(rx,ry) {
+    
+		cx = Math.cos(ry)
+		sx = Math.sin(ry)
+		cy = Math.cos(rx)
+		sy = Math.sin(rx)
 
-function allMatrix(rx,ry) {
-    
-    	cx = Math.cos(ry)
-    	sx = Math.sin(ry)
-    	cy = Math.cos(rx)
-    	sy = Math.sin(rx)
-    
-    	return [
-    		cy*f2, -sy*sx*f1, -sy*cx*nf,  sy*cx,
-            	0,      cx*f1,    -sx*nf,     sx,
-           	sy*f2,  sx*cy*f1,  cx*cy*nf, -cx*cy,
-            	0,      0,         nf2,       0,
-    	]
-    }
+		return [
+			cy*f2, -sy*sx*f1, -sy*cx*nf,  sy*cx,
+			0,      cx*f1,    -sx*nf,     sx,
+			sy*f2,  sx*cy*f1,  cx*cy*nf, -cx*cy,
+			0,      0,         nf2,       0,
+		]
+	}
+}
 
 function cube(program,x,y,z,l,h,w) {
         
