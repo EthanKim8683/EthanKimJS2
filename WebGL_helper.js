@@ -209,32 +209,3 @@ function createTex(data,width,height,type,dtype,itype) {
 	
 	return tex;
 }
-
-var uniformProgram = null;
-function bindUniformProgram(program) {
-	
-	uniformProgram = program;
-}
-
-function getUniformLocation(data) {
-	
-	var _data = [];
-	for(i=0;i<data.length;i++) {
-		
-		_data.push(gl.getUniformLocation(uniformProgram,data[i]));
-	}
-	
-	return _data;
-}
-
-EKGL = {
-	Cshader:createShader,
-	Cprogram:createProgram,
-	Ctex:createTex,
-	Buni:bindUniformProgram,
-	Sattrib:setAttrib,
-	Guni:getUniformLocation,
-	Mrot:rotationMatrix,
-	Mpro:projectionMatrix,
-	cube:cube,
-}
