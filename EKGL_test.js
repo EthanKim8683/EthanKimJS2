@@ -38,24 +38,28 @@ createProgram = (vID,fID) => {
 	return program;
 }
 
-setAttrib = (program,name,array,count,buffer,type) => {
+function setAttrib(program,name,array,count,buffer,type) {
         
-	buf = gl.createBuffer();
+        var buf = gl.createBuffer();
+        var _buffer = buffer || gl.ARRAY_BUFFER;
+        var _type = type || gl.FLOAT;
+        var _count = count || 3;
+        gl.bindBuffer(_buffer,buf);
+        gl.bufferData(_buffer,array,gl.STATIC_DRAW);
 	
-	_buffer = buffer || gl.ARRAY_BUFFER
-	_type = type || gl.FLOAT
-	_count = count || 3
-	_program = Array().concat(program)
-	
-	gl.bindBuffer(_buffer,buf)
-	gl.bufferData(_buffer,array,gl.STATIC_DRAW)
+	if(program.length) {
 		
-	for(i=_program.length;i--;) {
-
-		loc = gl.getAttribLocation(_program[i],name);
-
-		gl.enableVertexAttribArray(loc);
-		gl.vertexAttribPointer(loc,_count,_type,false,0,0);
+		for(let i=0;i<program.length;i++) {
+			
+        		var loc = gl.getAttribLocation(program[i],name);
+        		gl.enableVertexAttribArray(loc);
+        		gl.vertexAttribPointer(loc,_count,_type,false,0,0);
+		}
+	}else{
+		
+        	var loc = gl.getAttribLocation(program,name);
+        	gl.enableVertexAttribArray(loc);
+        	gl.vertexAttribPointer(loc,_count,_type,false,0,0);
 	}
 }
 
