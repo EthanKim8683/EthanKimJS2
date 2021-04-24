@@ -74,7 +74,7 @@ parse = file => {
             
             	data[t].push(i)
         }
-    })
+    }) 
     
     const objects = []
     
